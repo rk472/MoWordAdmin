@@ -21,18 +21,6 @@
             android:icon="@drawable/draw_help_black"
             android:id="@+id/nav_help"/>
         <item
-            android:id="@+id/nav_survey"
-            android:icon="@drawable/draw_register_black"
-            android:title="Create Surveyor" />
-        <item
-            android:id="@+id/nav_panchayat"
-            android:icon="@drawable/draw_ward_black"
-            android:title="View Ward/Panchayat" />
-        <item
-            android:id="@+id/nav_booth"
-            android:icon="@drawable/draw_booth_black"
-            android:title="View Booth" />
-        <item
             android:id="@+id/nav_search_name"
             android:icon="@drawable/draw_namesearch_black"
             android:title="Search By Name" />
@@ -42,8 +30,8 @@
             android:title="Search By Phone" />
         <item
             android:id="@+id/nav_survey_man"
-            android:icon="@drawable/draw_surveysearch_black"
-            android:title="Search By Surveyor" />
+            android:icon="@drawable/draw_ward_black"
+            android:title="View All Mandal" />
         <item
             android:id="@+id/nav_no_adhar"
             android:icon="@drawable/draw_nocard_black"
