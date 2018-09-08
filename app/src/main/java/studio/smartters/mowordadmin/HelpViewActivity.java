@@ -44,7 +44,7 @@ public class HelpViewActivity extends AppCompatActivity {
     }
     public void refresh(){
         GetDataTask gt=new GetDataTask();
-        gt.execute(Constants.URL+"getHelpBySubAdmin?id="+id);
+        gt.execute(Constants.URL+"getHelpByAdmin?id="+id);
     }
     public static HelpViewActivity getInstance(){
         return inst;

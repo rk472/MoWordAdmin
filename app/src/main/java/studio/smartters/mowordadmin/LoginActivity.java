@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
             p.setCanceledOnTouchOutside(false);
             p.show();
             LoginTask lt=new LoginTask();
-            lt.execute(Constants.URL+"loginSubAdmin?user="+user+"&pass="+pass);
+            lt.execute(Constants.URL+"loginAdmin?user="+user+"&pass="+pass);
 
         }
     }

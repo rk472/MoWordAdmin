@@ -111,7 +111,7 @@ public class LabharthiListActivity extends AppCompatActivity {
     }
     void refresh(){
         GetDataTask gt=new GetDataTask();
-        gt.execute(Constants.URL+"getLabharthiBySubAdmin?id="+id+"&atal="+atal+"&ujwala="+ujwala+"&sukanya="+sukanya+"&surakhya="+surakhya+"&other="+other+"&name="+name);
+        gt.execute(Constants.URL+"getLabharthiByAdmin?id="+id+"&atal="+atal+"&ujwala="+ujwala+"&sukanya="+sukanya+"&surakhya="+surakhya+"&other="+other+"&name="+name);
     }
     private class GetDataTask extends AsyncTask<String,Void,String> {
 

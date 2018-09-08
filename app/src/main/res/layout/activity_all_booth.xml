@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewMandalActivity">
+    tools:context=".AllBoothActivity">
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/survey_man_list"/>
+        android:id="@+id/all_booth_list"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -22,12 +22,12 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
-import studio.smartters.mowordadmin.adapter.DataAdapter;
-import studio.smartters.mowordadmin.adapter.SurveyManAdapter;
+import studio.smartters.mowordadmin.adapter.BoothAdapter;
+import studio.smartters.mowordadmin.adapter.MandalAdapter;
 import studio.smartters.mowordadmin.others.Constants;
 import studio.smartters.mowordadmin.others.SurveyMan;
 
-public class ViewSurveyManActivity extends AppCompatActivity {
+public class ViewMandalActivity extends AppCompatActivity {
     private RecyclerView list;
     private String id;
     @Override
@@ -42,7 +42,7 @@ public class ViewSurveyManActivity extends AppCompatActivity {
     }
     void refresh(String name){
         GetDataTask gt=new GetDataTask();
-        gt.execute(Constants.URL+"getAllSurveyMan?id="+id+"&name="+name);
+        gt.execute(Constants.URL+"getMandals?id="+id);
     }
     private class GetDataTask extends AsyncTask<String,Void,String> {
 
@@ -76,18 +76,20 @@ public class ViewSurveyManActivity extends AppCompatActivity {
                 if (arr.length() == 0)
                     Snackbar.make(list, "No data found", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                List<SurveyMan> jsonList = new ArrayList<>();
+                List<String> id = new ArrayList<>();
+                List<String> name=new ArrayList<>();
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject json=arr.getJSONObject(i);
-                    jsonList.add(new SurveyMan(json.getString("name"),json.getString("booth"),json.getString("ward"),json.getString("phone"),json.getString("total"),json.getString("id")));
+                    id.add(json.getString("id"));
+                    name.add(json.getString("name"));
                     Log.e("arr", arr.getJSONObject(i).toString());
                 }
 
-                SurveyManAdapter d = new SurveyManAdapter( ViewSurveyManActivity.this,jsonList);
+                MandalAdapter d = new MandalAdapter( ViewMandalActivity.this,name,id);
                 list.setAdapter(d);
 
             } catch(JSONException e){
-                Toast.makeText(ViewSurveyManActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(ViewMandalActivity.this, s, Toast.LENGTH_SHORT).show();
             }
 
         }

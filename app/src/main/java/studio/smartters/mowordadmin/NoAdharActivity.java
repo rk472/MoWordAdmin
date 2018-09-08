@@ -58,7 +58,7 @@ public class NoAdharActivity extends AppCompatActivity {
     }
     void refresh(String name){
         GetDataTask gt=new GetDataTask();
-        gt.execute(Constants.URL+"getNoAdharBySubAdmin?id="+id+"&name="+name);
+        gt.execute(Constants.URL+"getNoAdharByAdmin?id="+id+"&name="+name);
     }
     public void goBack(View view) {
         finish();

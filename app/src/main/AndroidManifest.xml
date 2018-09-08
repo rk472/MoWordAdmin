@@ -44,11 +44,13 @@
             android:theme="@style/NoBar" />
         <activity android:name=".NoVoterActivity" />
         <activity android:name=".NoAdharActivity" />
-        <activity android:name=".ViewSurveyManActivity" />
+        <activity android:name=".ViewMandalActivity" />
         <activity android:name=".HelpViewActivity" />
         <activity android:name=".HelpDetailsActivity" />
         <activity android:name=".SearchByBoothActivity" />
-        <activity android:name=".LabharthiListActivity"></activity>
+        <activity android:name=".LabharthiListActivity" />
+        <activity android:name=".AllWardActivity" />
+        <activity android:name=".AllBoothActivity"></activity>
     </application>
 
 </manifest>

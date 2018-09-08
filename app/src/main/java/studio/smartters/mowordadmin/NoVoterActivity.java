@@ -58,7 +58,7 @@ public class NoVoterActivity extends AppCompatActivity {
     }
     void refresh(String name){
         GetDataTask gt=new GetDataTask();
-        gt.execute(Constants.URL+"getNoVoterBySubAdmin?id="+id+"&name="+name);
+        gt.execute(Constants.URL+"getNoVoterByAdmin?id="+id+"&name="+name);
     }
     public void goBack(View view) {
         finish();

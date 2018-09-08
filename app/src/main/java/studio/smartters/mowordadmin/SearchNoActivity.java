@@ -58,7 +58,7 @@ public class SearchNoActivity extends AppCompatActivity {
     }
     void refresh(String name){
         GetDataTask gt=new GetDataTask();
-        gt.execute(Constants.URL+"getAllDataBySubAdminByNumber?id="+id+"&phone="+name);
+        gt.execute(Constants.URL+"getAllDataByAdminByNumber?id="+id+"&phone="+name);
     }
     public void clearText(View view) {
         etSearch.setText("");

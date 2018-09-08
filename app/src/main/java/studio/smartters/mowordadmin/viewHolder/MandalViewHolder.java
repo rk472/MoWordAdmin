@@ -15,11 +15,11 @@ import studio.smartters.mowordadmin.PersonDataActivity;
 import studio.smartters.mowordadmin.R;
 import studio.smartters.mowordadmin.ViewDataActivity;
 
-public class SurveyManViewHolder extends RecyclerView.ViewHolder {
+public class MandalViewHolder extends RecyclerView.ViewHolder {
     private TextView nameText, areaText,totalText;
     private ImageButton callButton;
     private View v;
-    public SurveyManViewHolder(View itemView) {
+    public MandalViewHolder(View itemView) {
         super(itemView);
         v = itemView;
         nameText = v.findViewById(R.id.survey_man_name);

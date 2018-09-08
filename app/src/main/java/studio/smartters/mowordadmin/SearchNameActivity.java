@@ -33,6 +33,7 @@ public class SearchNameActivity extends AppCompatActivity {
     private EditText etSearch;
     private String id;
     private RecyclerView list;
+    private String url;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,13 @@ public class SearchNameActivity extends AppCompatActivity {
         list=findViewById(R.id.search_name_list);
         list.setHasFixedSize(true);
         list.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        id=getSharedPreferences("login",MODE_PRIVATE).getString("id","0");
+        id=getIntent().getExtras().getString("id");
+        if(id==null) {
+            id = getSharedPreferences("login", MODE_PRIVATE).getString("id", "0");
+            url=Constants.URL+"getAllDataByAdminByName?id="+id;
+        }else {
+            url=Constants.URL+"getAllDataBySurveyMan?id="+id;
+        }
         refresh("");
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -59,7 +66,7 @@ public class SearchNameActivity extends AppCompatActivity {
     }
     void refresh(String name){
         GetDataTask gt=new GetDataTask();
-        gt.execute(Constants.URL+"getAllDataBySubAdminByName?id="+id+"&name="+name);
+        gt.execute(url+"&name="+name);
     }
     public void clearText(View view) {
         etSearch.setText("");

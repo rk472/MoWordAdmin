@@ -1,5 +1,6 @@
 package studio.smartters.mowordadmin;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -18,10 +20,7 @@ import android.view.View;
 
 import studio.smartters.mowordadmin.Fragment.HomeFragment;
 import studio.smartters.mowordadmin.Fragment.ImageFragment;
-import studio.smartters.mowordadmin.Fragment.RegisterSurveyFragment;
 import studio.smartters.mowordadmin.Fragment.VideoFragment;
-import studio.smartters.mowordadmin.Fragment.ViewBoothFragment;
-import studio.smartters.mowordadmin.Fragment.ViewWardFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private static MainActivity inst;
@@ -55,7 +54,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if(getSupportFragmentManager().findFragmentById(R.id.container_main).getTag().equals("home")){
+                new AlertDialog.Builder(this).setCancelable(true)
+                        .setMessage("Do You Really want to exit ?")
+                        .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                MainActivity.super.onBackPressed();
+                            }
+                        }).setNegativeButton("no",null).show();
+            }else{
+                Fragment ff = new HomeFragment();
+                String tag = "home";
+                FragmentManager fm = getSupportFragmentManager();
+                FragmentTransaction f = fm.beginTransaction();
+                f.replace(R.id.container_main,ff,tag);
+                f.commit();
+            }
         }
     }
 
@@ -114,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(this,SearchNoActivity.class));
         }
         else if (id == R.id.nav_survey_man) {
-            startActivity(new Intent(this,ViewSurveyManActivity.class));
+            startActivity(new Intent(this,ViewMandalActivity.class));
         } else if (id == R.id.nav_no_voter) {
             startActivity(new Intent(this,NoVoterActivity.class));
         }else if (id == R.id.nav_no_adhar) {
@@ -151,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(new Intent(this,SearchNoActivity.class));
     }
     public void goSurveyor(View v){
-        startActivity(new Intent(this,ViewSurveyManActivity.class));
+        startActivity(new Intent(this,ViewMandalActivity.class));
     }
     public void goNoAdhar(View v){
         startActivity(new Intent(this,NoAdharActivity.class));
