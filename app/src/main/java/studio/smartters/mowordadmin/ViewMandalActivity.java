@@ -35,6 +35,7 @@ public class ViewMandalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_survey_man);
         list=findViewById(R.id.survey_man_list);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         id=getSharedPreferences("login",MODE_PRIVATE).getString("id","0");
         list.setHasFixedSize(true);
         list.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));

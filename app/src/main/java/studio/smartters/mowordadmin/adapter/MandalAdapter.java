@@ -26,7 +26,7 @@ public class MandalAdapter extends  RecyclerView.Adapter<BoothHolder>{
     @NonNull
     @Override
     public BoothHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(a).inflate(R.layout.booth_row,parent,false);
+        View v= LayoutInflater.from(a).inflate(R.layout.mandal_row,parent,false);
         return new BoothHolder(v);
     }
 

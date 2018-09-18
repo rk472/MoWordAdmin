@@ -31,6 +31,7 @@ public class AllWardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_ward);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         list=findViewById(R.id.ward_list);
         list.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         list.setHasFixedSize(true);

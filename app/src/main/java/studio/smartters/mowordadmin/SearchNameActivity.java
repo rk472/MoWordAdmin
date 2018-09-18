@@ -42,12 +42,12 @@ public class SearchNameActivity extends AppCompatActivity {
         list=findViewById(R.id.search_name_list);
         list.setHasFixedSize(true);
         list.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        id=getIntent().getExtras().getString("id");
-        if(id==null) {
+        try {
+            id = getIntent().getExtras().getString("id");
+            url=Constants.URL+"getAllDataBySurveyMan?id="+id;
+        }catch (NullPointerException ee){
             id = getSharedPreferences("login", MODE_PRIVATE).getString("id", "0");
             url=Constants.URL+"getAllDataByAdminByName?id="+id;
-        }else {
-            url=Constants.URL+"getAllDataBySurveyMan?id="+id;
         }
         refresh("");
         etSearch.addTextChangedListener(new TextWatcher() {

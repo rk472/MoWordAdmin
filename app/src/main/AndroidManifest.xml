@@ -44,13 +44,23 @@
             android:theme="@style/NoBar" />
         <activity android:name=".NoVoterActivity" />
         <activity android:name=".NoAdharActivity" />
-        <activity android:name=".ViewMandalActivity" />
-        <activity android:name=".HelpViewActivity" />
+        <activity android:name=".ViewMandalActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="All Mandal Names"/>
+        <activity android:name=".HelpViewActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="All Help Request"/>
         <activity android:name=".HelpDetailsActivity" />
         <activity android:name=".SearchByBoothActivity" />
-        <activity android:name=".LabharthiListActivity" />
-        <activity android:name=".AllWardActivity" />
-        <activity android:name=".AllBoothActivity"></activity>
+        <activity android:name=".LabharthiListActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="Labharthi List"/>
+        <activity android:name=".AllWardActivity"
+            android:parentActivityName=".ViewMandalActivity"
+            android:label="All Ward / Panchayat"/>
+        <activity android:name=".AllBoothActivity"
+            android:parentActivityName=".AllWardActivity"
+            android:label="All Booth Names"/>
     </application>
 
 </manifest>
