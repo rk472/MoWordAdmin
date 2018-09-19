@@ -1,5 +1,6 @@
 package studio.smartters.mowordadmin;
 
+import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import studio.smartters.mowordadmin.adapter.BoothAdapter;
 import studio.smartters.mowordadmin.adapter.MandalAdapter;
@@ -30,18 +32,24 @@ import studio.smartters.mowordadmin.others.SurveyMan;
 public class ViewMandalActivity extends AppCompatActivity {
     private RecyclerView list;
     private String id;
+    public ProgressDialog p;
+    private static ViewMandalActivity inst;
+    public static ViewMandalActivity getInstance(){
+        return inst;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_survey_man);
+        inst=this;
         list=findViewById(R.id.survey_man_list);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         id=getSharedPreferences("login",MODE_PRIVATE).getString("id","0");
         list.setHasFixedSize(true);
         list.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         refresh("");
     }
-    void refresh(String name){
+    public void refresh(String name){
         GetDataTask gt=new GetDataTask();
         gt.execute(Constants.URL+"getMandals?id="+id);
     }
@@ -79,14 +87,16 @@ public class ViewMandalActivity extends AppCompatActivity {
                             .setAction("Action", null).show();
                 List<String> id = new ArrayList<>();
                 List<String> name=new ArrayList<>();
+                List<String> userName=new ArrayList<>();
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject json=arr.getJSONObject(i);
                     id.add(json.getString("id"));
                     name.add(json.getString("name"));
+                    userName.add(json.getString("user_name"));
                     Log.e("arr", arr.getJSONObject(i).toString());
                 }
 
-                MandalAdapter d = new MandalAdapter( ViewMandalActivity.this,name,id);
+                MandalAdapter d = new MandalAdapter( ViewMandalActivity.this,name,id,userName);
                 list.setAdapter(d);
 
             } catch(JSONException e){

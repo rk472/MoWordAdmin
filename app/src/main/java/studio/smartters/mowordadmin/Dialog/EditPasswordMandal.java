@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -23,18 +24,21 @@ import java.net.URLConnection;
 
 import studio.smartters.mowordadmin.Fragment.ViewBoothFragment;
 import studio.smartters.mowordadmin.R;
+import studio.smartters.mowordadmin.ViewMandalActivity;
 import studio.smartters.mowordadmin.others.Constants;
 
 public class EditPasswordMandal extends Dialog {
     private EditText et_name,et_pass,et_own_pass;
     private Button btn_create;
-    private Context c;
-    private ViewBoothFragment fragment=ViewBoothFragment.getInstance();
-    public EditPasswordMandal(@NonNull Context context, final String id) {
+    private AppCompatActivity c;
+    private ViewMandalActivity fragment=ViewMandalActivity.getInstance();
+    public EditPasswordMandal(@NonNull AppCompatActivity context, final String id, final String user_name) {
         super(context);
         setContentView(R.layout.modal_password);
         et_name = findViewById(R.id.modal_name);
+        et_name.setText(user_name);
         et_pass = findViewById(R.id.modal_password);
+        final String myId=context.getSharedPreferences("login",Context.MODE_PRIVATE).getString("id","0");
         et_own_pass = findViewById(R.id.modal_own_password);
         btn_create = findViewById(R.id.modal_btn);
         c=context;
@@ -47,13 +51,20 @@ public class EditPasswordMandal extends Dialog {
                 if(TextUtils.isEmpty(name)||TextUtils.isEmpty(own_pass)||TextUtils.isEmpty(pass)) {
                     Toast.makeText(c, "Field's can't be empty..", Toast.LENGTH_SHORT).show();
                 }else {
-                    //et.execute(Constants.URL+"editBooth?id="+id+"&name="+name);
+                    fragment.p=new ProgressDialog(c);
+                    fragment.p.setTitle("Please wait");
+                    fragment.p.setMessage("We are updating the Password");
+                    fragment.p.setCanceledOnTouchOutside(false);
+                    fragment.p.setCancelable(false);
+                    fragment.p.show();
+                    EditMandalTask et=new EditMandalTask();
+                    et.execute(Constants.URL+"changeSubAdminPassword?myId="+myId+"&myPass="+own_pass+"&pass="+pass+"&id="+id+"&userName="+name);
                 }
             }
         });
     }
-    /*
-    private class EditBoothTask extends AsyncTask<String,Void,String> {
+
+    private class EditMandalTask extends AsyncTask<String,Void,String> {
 
         @Override
         protected String doInBackground(String... strings) {
@@ -63,18 +74,15 @@ public class EditPasswordMandal extends Dialog {
                 InputStream is=con.getInputStream();
                 InputStreamReader ir=new InputStreamReader(is);
                 int data=ir.read();
-                String res="";
+                StringBuilder res= new StringBuilder();
                 while(data!=-1){
-                    res+=(char)data;
+                    res.append((char) data);
                     data=ir.read();
                 }
-                return res;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
+                return res.toString();
             } catch (IOException e) {
-                e.printStackTrace();
+                return "Can't reach Server ";
             }
-            return null;
         }
 
         @Override
@@ -83,16 +91,16 @@ public class EditPasswordMandal extends Dialog {
             fragment.p.dismiss();
             try {
                 JSONObject json=new JSONObject(s);
-                if(json.getBoolean("status")){
-                    Toast.makeText(c, "Added Successfully", Toast.LENGTH_SHORT).show();
-                    fragment.refreshBooth();
+                if(json.getBoolean("status")) {
+                    Toast.makeText(c, "Updated Successfully", Toast.LENGTH_SHORT).show();
+                    fragment.refresh("");
                     dismiss();
                 }else{
-                    Toast.makeText(c, "Some error occurred...try again later..", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(c, "Either your password is wrong or You are giving the old password/username of the user", Toast.LENGTH_SHORT).show();
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
+            }catch (JSONException e) {
+                Toast.makeText(c, s, Toast.LENGTH_SHORT).show();
             }
         }
-    }*/
+    }
 }

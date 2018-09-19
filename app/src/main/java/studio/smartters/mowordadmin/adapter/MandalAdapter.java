@@ -16,12 +16,13 @@ import studio.smartters.mowordadmin.viewHolder.MandalViewHolder;
 
 public class MandalAdapter extends  RecyclerView.Adapter<BoothHolder>{
     private final AppCompatActivity a;
-    private final List<String> name,id;
+    private final List<String> name,id,userName;
 
-    public MandalAdapter(AppCompatActivity a, List<String> name,List<String> id){
+    public MandalAdapter(AppCompatActivity a, List<String> name,List<String> id,List<String> userName){
         this.a=a;
         this.name=name;
         this.id=id;
+        this.userName=userName;
     }
     @NonNull
     @Override
@@ -35,6 +36,7 @@ public class MandalAdapter extends  RecyclerView.Adapter<BoothHolder>{
         holder.setName(name.get(position));
         holder.setClickNew(id.get(position),a);
         holder.setInVisible();
+        holder.edit(id.get(position),userName.get(position),a);
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ import org.json.JSONObject;
 
 import studio.smartters.mowordadmin.AllWardActivity;
 import studio.smartters.mowordadmin.Dialog.EditDialogBooth;
+import studio.smartters.mowordadmin.Dialog.EditPasswordMandal;
 import studio.smartters.mowordadmin.MainActivity;
 import studio.smartters.mowordadmin.R;
 import studio.smartters.mowordadmin.SearchByBoothActivity;
@@ -21,11 +23,13 @@ import studio.smartters.mowordadmin.SearchNameActivity;
 public class BoothHolder extends RecyclerView.ViewHolder {
     private TextView nameText;
     private ImageView edit;
+    private ImageButton editButton;
     private View v;
     public BoothHolder(View itemView) {
         super(itemView);
         nameText=itemView.findViewById(R.id.booth_name);
         edit=itemView.findViewById(R.id.edit_booth_btn);
+        editButton=itemView.findViewById(R.id.edit_mandal_btn);
         v=itemView;
     }
     public void setInVisible(){
@@ -34,12 +38,11 @@ public class BoothHolder extends RecyclerView.ViewHolder {
     public void setName(String name){
         nameText.setText(name);
     }
-    public void edit(final String id, final Context c){
-        edit.setOnClickListener(new View.OnClickListener() {
+    public void edit(final String id,final String userName, final AppCompatActivity a){
+        editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditDialogBooth dialog= new EditDialogBooth(c,id);
-                dialog.show();
+                new EditPasswordMandal(a,id,userName).show();
             }
         });
     }
