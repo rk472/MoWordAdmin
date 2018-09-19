@@ -92,6 +92,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(this,LoginActivity.class));
             finish();
             return true;
+        }else{
+            startActivity(new Intent(this,ChangePasswordActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
