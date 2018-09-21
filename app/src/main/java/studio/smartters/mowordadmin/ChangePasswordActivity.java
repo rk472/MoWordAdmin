@@ -1,5 +1,6 @@
 package studio.smartters.mowordadmin;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -53,6 +54,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
         }
 
     }
+    @SuppressLint("StaticFieldLeak")
     private class ChangeTask extends AsyncTask<String,Void,String> {
 
         @Override

@@ -68,7 +68,6 @@ public class AddVideoActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             if (requestCode == 1) {
-                System.out.println("SELECT_VIDEO");
                 Uri selectedImageUri = data.getData();
                 selectedPath = getPath(selectedImageUri);
                 videoView.setVideoURI(selectedImageUri);
@@ -91,7 +90,7 @@ public class AddVideoActivity extends AppCompatActivity {
         cursor.moveToFirst();
         String path = cursor.getString(cursor.getColumnIndex(MediaStore.Video.Media.DATA));
         cursor.close();
-
+        Log.e("path",path);
         return path;
     }
     private class UploadVideo extends AsyncTask<Void, Void, String> {

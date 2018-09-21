@@ -96,7 +96,7 @@ public class ImageFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        NavigationView navigationView = (NavigationView) main.findViewById(R.id.nav_view);
+        NavigationView navigationView = main.findViewById(R.id.nav_view);
         navigationView.setCheckedItem(R.id.nav_image);
         refresh();
     }

@@ -1,7 +1,4 @@
 package studio.smartters.mowordadmin.others;
-import android.util.Log;
-import android.widget.RatingBar;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -10,11 +7,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Date;
 
-public class Upload {
+public class UploadDoc {
 
     private int serverResponseCode;
 
@@ -34,10 +29,9 @@ public class Upload {
         if (!sourceFile.isFile()) {
             return null;
         }
-
         try {
             FileInputStream fileInputStream = new FileInputStream(sourceFile);
-            String UPLOAD_URL = Constants.URL + "video_upload";
+            String UPLOAD_URL = Constants.URL + "doc_upload";
             URL url = new URL(UPLOAD_URL);
             conn = (HttpURLConnection) url.openConnection();
             conn.setDoInput(true);
@@ -95,7 +89,7 @@ public class Upload {
             } catch (IOException ignored) { }
             return sb.toString();
         }else {
-            return "Could not upload";
+            return "Could not upload :";
         }
     }
 }

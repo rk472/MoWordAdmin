@@ -92,8 +92,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(this,LoginActivity.class));
             finish();
             return true;
-        }else{
+        }else if(id==R.id.action_change_password){
             startActivity(new Intent(this,ChangePasswordActivity.class));
+        }else{
+            startActivity(new Intent(this,AddDocumentActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
