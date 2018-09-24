@@ -44,10 +44,11 @@ public class SearchNameActivity extends AppCompatActivity {
         list.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         try {
             id = getIntent().getExtras().getString("id");
-            url=Constants.URL+"getAllDataBySurveyMan?id="+id;
+            url=Constants.URL+"getAllDataByBooth?id="+id;
         }catch (NullPointerException ee){
             id = getSharedPreferences("login", MODE_PRIVATE).getString("id", "0");
             url=Constants.URL+"getAllDataByAdminByName?id="+id;
+
         }
         refresh("");
         etSearch.addTextChangedListener(new TextWatcher() {

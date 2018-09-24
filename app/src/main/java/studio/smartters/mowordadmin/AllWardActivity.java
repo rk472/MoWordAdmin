@@ -63,12 +63,10 @@ public class AllWardActivity extends AppCompatActivity {
                     data=ir.read();
                 }
                 return res;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return null;
+            return "";
         }
         @Override
         protected void onPostExecute(String s) {

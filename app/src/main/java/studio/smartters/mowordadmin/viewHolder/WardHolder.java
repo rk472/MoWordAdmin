@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import studio.smartters.mowordadmin.AllBoothActivity;
 import studio.smartters.mowordadmin.Dialog.CreateDialogPanchayat;
@@ -26,6 +27,7 @@ public class WardHolder extends RecyclerView.ViewHolder {
         nameText.setText(name);
     }
     public void setClick(final String id, final Context a){
+        //Toast.makeText(a, id, Toast.LENGTH_SHORT).show();
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
