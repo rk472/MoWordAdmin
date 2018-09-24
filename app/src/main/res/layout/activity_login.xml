@@ -22,7 +22,7 @@
             android:id="@+id/login_logo"
             android:layout_width="100sp"
             android:layout_height="100sp"
-            android:src="@color/colorAccent" />
+            android:src="@drawable/new_logo" />
         <android.support.design.widget.TextInputLayout
             android:layout_width="wrap_content"
             android:layout_marginTop="30sp"

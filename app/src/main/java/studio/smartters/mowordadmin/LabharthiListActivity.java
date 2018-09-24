@@ -113,6 +113,11 @@ public class LabharthiListActivity extends AppCompatActivity {
         GetDataTask gt=new GetDataTask();
         gt.execute(Constants.URL+"getLabharthiByAdmin?id="+id+"&atal="+atal+"&ujwala="+ujwala+"&sukanya="+sukanya+"&surakhya="+surakhya+"&other="+other+"&name="+name);
     }
+
+    public void clearText(View view) {
+        searchName.setText("");
+    }
+
     private class GetDataTask extends AsyncTask<String,Void,String> {
 
         @Override
